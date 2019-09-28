@@ -1,0 +1,4 @@
+---
+- name: Set timezone to Prague
+  timezone:
+    name: Europe/Prague
