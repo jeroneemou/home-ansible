@@ -1,0 +1,33 @@
+---
+# - name: Install apt-transport-https
+#   apt:
+#     name: apt-transport-https
+#     state: latest
+
+# - name: Install ca-certificates
+#   apt:
+#     name: ca-certificates
+#     state: latest
+
+# - name: Install software-properties-common
+#   apt:
+#     name: software-properties-common
+#     state: latest
+
+- name: Download docker install script
+  get_url:
+    url: https://get.docker.com
+    dest: /tmp/docker_install.sh
+    mode: "a+x"
+
+- name: Install docker
+  shell: /bin/sh /tmp/docker_install.sh
+
+- name: Remove docker install file
+  file:
+    path: /tmp/docker_install.sh
+    state: absent
+
+- name: Set Docker to auto-start
+  service: name=docker enabled=true state=started
+
