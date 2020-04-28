@@ -1,0 +1,5 @@
+---
+- hosts: pi
+  sudo: yes # this is quite important! otherwise weird shits start to happen
+  roles: 
+    - pi_common
